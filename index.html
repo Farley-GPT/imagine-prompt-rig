@@ -6,164 +6,117 @@
   <title>Imagine Prompt Rig</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@330;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,480;9..144,600&family=Outfit:wght@340;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ink: #f4efe6;
-      --mute: #a3988c;
-      --line: rgba(244,239,230,.08);
-      --glass: rgba(20,16,14,.72);
-      --field: rgba(255,255,255,.04);
-      --rose: #d26a55;
-      --gold: #e3c7a0;
-      --ok: #8fbf8a;
-      --warn: #e0b25a;
+      --ink:#f4efe6; --mute:#a3988c; --line:rgba(244,239,230,.09);
+      --glass:rgba(16,13,12,.82); --field:rgba(255,255,255,.045);
+      --rose:#d26a55; --gold:#e3c7a0; --ok:#8fbf8a; --warn:#e0b25a;
     }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; min-height: 100%; }
+    * { box-sizing:border-box; }
+    html,body { margin:0; min-height:100%; }
     body {
-      color: var(--ink);
-      font: 15px/1.45 Outfit, sans-serif;
+      color:var(--ink); font:15px/1.45 Outfit,sans-serif;
       background:
-        radial-gradient(900px 500px at 12% -10%, rgba(210,106,85,.18), transparent 50%),
-        radial-gradient(700px 420px at 100% 0%, rgba(227,199,160,.08), transparent 46%),
+        radial-gradient(900px 460px at 8% -12%, rgba(210,106,85,.2), transparent 52%),
+        radial-gradient(640px 380px at 100% 0, rgba(227,199,160,.08), transparent 48%),
         #0b0a09;
     }
-    body::before {
-      content: "";
-      position: fixed; inset: 0; pointer-events: none; opacity: .035;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    }
     header {
-      position: sticky; top: 0; z-index: 8;
-      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-      padding: 18px 28px 16px;
-      backdrop-filter: blur(18px);
-      background: rgba(11,10,9,.78);
-      border-bottom: 1px solid var(--line);
+      position:sticky; top:0; z-index:20;
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+      padding:14px 22px;
+      backdrop-filter:blur(18px);
+      background:rgba(11,10,9,.8);
+      border-bottom:1px solid var(--line);
     }
-    .brand { min-width: 220px; }
-    .brand h1 {
-      margin: 0;
-      font-family: Fraunces, serif;
-      font-size: 22px;
-      font-weight: 500;
-      letter-spacing: -.02em;
-      color: var(--gold);
-    }
-    .brand p { margin: 2px 0 0; color: var(--mute); font-size: 12px; }
-    .grow { flex: 1; }
-    .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-    .chip {
-      display: flex; align-items: center; gap: 8px;
-      padding: 6px 10px 6px 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--field);
-      color: var(--mute); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
-    }
-    select, input[type="text"], textarea {
-      width: 100%;
-      appearance: none;
-      background: var(--field);
-      color: var(--ink);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font: inherit;
-      outline: none;
-    }
-    .chip select { width: auto; min-width: 118px; padding: 6px 8px; border: 0; background: transparent; border-radius: 0; }
-    select {
-      background-image: linear-gradient(45deg, transparent 50%, #e3c7a0 50%), linear-gradient(135deg, #e3c7a0 50%, transparent 50%);
-      background-position: calc(100% - 16px) 55%, calc(100% - 11px) 55%;
-      background-size: 5px 5px, 5px 5px;
-      background-repeat: no-repeat;
-      padding-right: 28px;
-    }
-    select:focus, input:focus, textarea:focus { border-color: rgba(227,199,160,.45); box-shadow: 0 0 0 3px rgba(227,199,160,.08); }
+    .brand h1 { margin:0; font-family:Fraunces,serif; font-size:22px; font-weight:500; color:var(--gold); letter-spacing:-.02em; }
+    .brand p { margin:2px 0 0; color:var(--mute); font-size:12px; }
+    .grow { flex:1; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    .chip { display:flex; align-items:center; gap:8px; padding:6px 10px 6px 12px; border:1px solid var(--line); border-radius:999px; background:var(--field); color:var(--mute); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
     button {
-      border: 1px solid transparent;
-      border-radius: 999px;
-      padding: 9px 14px;
-      font: 500 13px Outfit, sans-serif;
-      cursor: pointer;
-      color: #1a1412;
-      background: var(--gold);
+      border:1px solid transparent; border-radius:999px; padding:9px 14px;
+      font:500 13px Outfit,sans-serif; cursor:pointer; color:#1a1412; background:var(--gold);
     }
-    button.ghost {
-      background: transparent;
-      color: var(--ink);
-      border-color: var(--line);
+    button.ghost { background:transparent; color:var(--ink); border-color:var(--line); }
+    button.primary { background:var(--rose); color:#fff; }
+    button:hover { transform:translateY(-1px); }
+    select, input[type=text], textarea {
+      width:100%; appearance:none; background:var(--field); color:var(--ink);
+      border:1px solid var(--line); border-radius:12px; padding:10px 12px; font:inherit; outline:none;
     }
-    button.primary { background: var(--rose); color: #fff; }
-    button:hover { transform: translateY(-1px); }
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr);
-      gap: 22px;
-      padding: 22px 28px 48px;
-      align-items: start;
+    .chip select { width:auto; min-width:110px; padding:4px 6px; border:0; background:transparent; }
+    select { background-image:linear-gradient(45deg,transparent 50%,#e3c7a0 50%),linear-gradient(135deg,#e3c7a0 50%,transparent 50%); background-position:calc(100% - 16px) 55%,calc(100% - 11px) 55%; background-size:5px 5px,5px 5px; background-repeat:no-repeat; padding-right:28px; }
+    .stage { max-width:1080px; margin:0 auto; padding:22px 22px 40px; }
+    .strip { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+    .token {
+      display:flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px; border:1px solid var(--line);
+      background:rgba(255,255,255,.03); color:var(--ink); font-weight:500;
     }
-    @media (max-width: 980px) { .layout { grid-template-columns: 1fr; padding: 16px; } header { padding: 14px 16px; } }
-    .controls { display: grid; gap: 14px; }
-    .card {
-      background: var(--glass);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 16px 16px 14px;
-      backdrop-filter: blur(16px);
+    .token i { font-style:normal; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); }
+    .token.on { border-color:rgba(227,199,160,.45); background:rgba(227,199,160,.08); }
+    .token.on i { color:var(--gold); }
+    .sheet {
+      background:var(--glass); border:1px solid var(--line); border-radius:24px;
+      padding:22px 24px 18px; backdrop-filter:blur(16px);
     }
-    .card h2 {
-      margin: 0 0 12px;
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); font-weight: 500;
-    }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-    @media (max-width: 640px) { .row, .row3 { grid-template-columns: 1fr; } }
-    label { display: flex; flex-direction: column; gap: 6px; font-size: 11px; color: var(--mute); letter-spacing: .04em; }
-    label.inline { flex-direction: row; align-items: center; gap: 8px; letter-spacing: 0; color: var(--ink); font-size: 13px; }
-    .lock {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 8px; border-radius: 999px; border: 1px solid var(--line);
-      font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); font-weight: 500;
-    }
-    input[type="checkbox"] { accent-color: var(--rose); }
-    textarea#custom { min-height: 72px; resize: vertical; }
-    .out { position: sticky; top: 88px; }
-    .kicker { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); margin: 14px 0 8px; }
+    .meta { display:flex; justify-content:space-between; align-items:center; gap:12px; color:var(--mute); font-size:11px; letter-spacing:.16em; text-transform:uppercase; }
+    .meter { height:3px; border-radius:99px; background:rgba(255,255,255,.08); overflow:hidden; margin:10px 0 16px; }
+    .meter > i { display:block; height:100%; width:30%; background:var(--ok); }
+    .meter.mid > i { width:62%; background:var(--warn); }
+    .meter.high > i { width:92%; background:var(--rose); }
     .prompt {
-      white-space: pre-wrap;
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 16px 16px 18px;
-      min-height: 128px;
-      font-family: Fraunces, serif;
-      font-size: 16px;
-      line-height: 1.55;
-      color: #f7f1e8;
+      white-space:pre-wrap; min-height:28vh;
+      font-family:Fraunces,serif; font-size:clamp(18px,2.4vw,28px); line-height:1.45; color:#f7f1e8;
     }
-    .meter { height: 3px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; margin: 4px 0 8px; }
-    .meter > i { display: block; height: 100%; width: 30%; background: var(--ok); }
-    .meter.mid > i { width: 62%; background: var(--warn); }
-    .meter.high > i { width: 92%; background: var(--rose); }
-    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
-    .warn { color: var(--warn); font-size: 12px; min-height: 16px; }
-    .hist { display: flex; flex-direction: column; gap: 6px; max-height: 180px; overflow: auto; }
-    .hist button {
-      text-align: left; font-size: 12px; color: var(--mute); font-weight: 400;
-      background: transparent; border-color: var(--line); border-radius: 12px; color: var(--mute);
+    .warn { color:var(--warn); font-size:12px; min-height:16px; }
+    .actions { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 8px; }
+    .safer-wrap { margin-top:10px; color:var(--mute); }
+    .safer-wrap summary { cursor:pointer; font-size:12px; letter-spacing:.12em; text-transform:uppercase; }
+    #safer { margin-top:10px; font-size:15px; min-height:auto; color:#d8cfc3; }
+    .reel-label { margin:22px 0 10px; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--mute); }
+    .hist { display:flex; gap:10px; overflow-x:auto; padding-bottom:8px; }
+    .frame {
+      flex:0 0 180px; text-align:left; border-radius:16px; padding:12px;
+      background:rgba(255,255,255,.03); color:var(--ink); border:1px solid var(--line);
     }
-    footer { color: var(--mute); font-size: 11px; margin-top: 16px; }
+    .frame em { display:block; font-style:normal; font-family:Fraunces,serif; }
+    .frame span { display:block; color:var(--mute); font-size:12px; margin:4px 0 8px; }
+    .frame b { font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ok); }
+    .frame b.mid { color:var(--warn); } .frame b.high { color:var(--rose); }
+    footer { color:var(--mute); font-size:11px; margin-top:18px; }
+    .drawer {
+      position:fixed; top:0; right:0; width:min(440px,100%); height:100%;
+      background:#120f0d; border-left:1px solid var(--line);
+      transform:translateX(104%); transition:transform .25s ease; z-index:30;
+      overflow:auto; padding:18px 16px 40px;
+    }
+    body.mix-open .drawer { transform:none; }
+    .veil { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:25; }
+    body.mix-open .veil { display:block; }
+    .drawer h2 { margin:16px 0 10px; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--mute); display:flex; justify-content:space-between; align-items:center; }
+    .row,.row3 { display:grid; gap:10px; }
+    .row { grid-template-columns:1fr 1fr; }
+    .row3 { grid-template-columns:1fr 1fr 1fr; }
+    label { display:flex; flex-direction:column; gap:6px; font-size:11px; color:var(--mute); }
+    label.inline { flex-direction:row; align-items:center; gap:8px; color:var(--ink); font-size:13px; }
+    .lock { display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; border:1px solid var(--line); font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
+    .hits { display:flex; flex-direction:column; gap:6px; max-height:180px; overflow:auto; margin-top:8px; }
+    .hit { text-align:left; border-radius:12px; background:transparent; color:var(--ink); border-color:var(--line); display:flex; justify-content:space-between; gap:8px; }
+    .hit.sel { border-color:rgba(227,199,160,.5); background:rgba(227,199,160,.08); }
+    .hit small { color:var(--mute); font-size:11px; }
+    .empty { color:var(--mute); font-size:12px; }
+    .sr { position:absolute; left:-9999px; }
+    @media (max-width:720px){ .row,.row3{grid-template-columns:1fr;} .stage{padding:16px;} .prompt{font-size:20px;} }
   </style>
 </head>
 <body>
   <header>
     <div class="brand">
       <h1>Imagine Prompt Rig</h1>
-      <p>Lock a look. Roll the rest. Copy Desired or Safer.</p>
+      <p>Pin a look. Search a scene. Copy the line.</p>
     </div>
     <div class="grow"></div>
     <div class="toolbar">
@@ -179,82 +132,86 @@
       <button class="ghost" id="escalate">Escalate</button>
       <button class="ghost" id="mutatePlace">New place</button>
       <button class="ghost" id="mutatePose">New pose</button>
+      <button class="ghost" id="toggleMix">Adjust</button>
     </div>
   </header>
 
-  <div class="layout">
-    <div class="controls">
-      <section class="card">
-        <h2>Subject <span class="lock"><input type="checkbox" id="lockSubject" checked /> lock</span></h2>
-        <div class="row3">
-          <label>Age <select id="age"></select></label>
-          <label>Archetype <select id="archetype"></select></label>
-          <label>Body <select id="body"></select></label>
-        </div>
-        <div class="row3" style="margin-top:10px">
-          <label>Skin <select id="skin"></select></label>
-          <label>Hair <select id="hair"></select></label>
-          <label>Eyes <select id="eyes"></select></label>
-        </div>
-        <div class="row" style="margin-top:10px">
-          <label>Nickname <input type="text" id="nick" placeholder="optional" /></label>
-          <label class="inline" style="padding-top:22px"><input type="checkbox" id="useNick" /> include in prompt</label>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>Scene <span class="lock"><input type="checkbox" id="lockScene" /> lock</span></h2>
-        <div class="row">
-          <label>Style <select id="style"></select></label>
-          <label>Situation <select id="situation"></select></label>
-        </div>
-        <div class="row" style="margin-top:10px">
-          <label>Pose <select id="pose"></select></label>
-          <label>Expression <select id="expression"></select></label>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>Clothes <span class="lock"><input type="checkbox" id="lockClothes" /> lock</span></h2>
-        <div class="row3">
-          <label>Garment <select id="clothes"></select></label>
-          <label>Fail <select id="fail"></select></label>
-          <label>Cover <select id="cover"></select></label>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>Camera <span class="lock"><input type="checkbox" id="lockCam" /> lock</span></h2>
-        <div class="row3">
-          <label>Framing <select id="camera"></select></label>
-          <label>Light <select id="light"></select></label>
-          <label>Skin finish <select id="finish"></select></label>
-        </div>
-        <label class="inline" style="margin-top:12px"><input type="checkbox" id="noPhoto" /> style shield when the stack runs hot</label>
-      </section>
-
-      <section class="card">
-        <h2>Extra clause</h2>
-        <textarea id="custom" placeholder="One extra sentence. No celebrity names."></textarea>
-      </section>
-    </div>
-
-    <aside class="out card">
-      <div class="warn" id="warn"></div>
+  <main class="stage">
+    <div class="strip" id="strip"></div>
+    <section class="sheet">
+      <div class="meta"><span>Desired</span><span id="risklab">mid</span></div>
       <div class="meter" id="meter"><i></i></div>
-      <div class="kicker">Desired</div>
+      <div class="warn" id="warn"></div>
       <div class="prompt" id="desired"></div>
       <div class="actions">
         <button class="primary" id="copyDesired">Copy desired</button>
         <button class="ghost" id="copySafer">Copy safer</button>
       </div>
-      <div class="kicker">Safer rewrite</div>
-      <div class="prompt" id="safer"></div>
-      <div class="kicker">History</div>
-      <div class="hist" id="hist"></div>
-      <footer>Fictional adults 18+ only.</footer>
-    </aside>
-  </div>
+      <details class="safer-wrap">
+        <summary>Safer rewrite</summary>
+        <div class="prompt" id="safer"></div>
+      </details>
+    </section>
+    <div class="reel-label">History</div>
+    <div class="hist" id="hist"></div>
+    <footer>Fictional adults 18+ only. Tap a character token to pin it against rolls.</footer>
+  </main>
+
+  <div class="veil" id="veil"></div>
+  <aside class="drawer" id="drawer">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <strong>Mix</strong>
+      <button class="ghost" id="closeMix">Close</button>
+    </div>
+
+    <h2>Subject <span class="lock"><input type="checkbox" id="lockSubject" checked /> lock all</span></h2>
+    <div class="row3">
+      <label>Age <select id="age"></select></label>
+      <label>Archetype <select id="archetype"></select></label>
+      <label>Body <select id="body"></select></label>
+    </div>
+    <div class="row3" style="margin-top:10px">
+      <label>Skin <select id="skin"></select></label>
+      <label>Hair <select id="hair"></select></label>
+      <label>Eyes <select id="eyes"></select></label>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <label>Nickname <input type="text" id="nick" placeholder="optional" /></label>
+      <label class="inline" style="padding-top:22px"><input type="checkbox" id="useNick" /> include</label>
+    </div>
+
+    <h2>Scene <span class="lock"><input type="checkbox" id="lockScene" /> lock</span></h2>
+    <label>Style <select id="style"></select></label>
+    <label>Expression <select id="expression"></select></label>
+    <label style="margin-top:10px">Search poses
+      <input type="text" id="poseQ" placeholder="arch, glance, kneel..." />
+    </label>
+    <div class="hits" id="poseHits"></div>
+    <label style="margin-top:10px">Search situations
+      <input type="text" id="sitQ" placeholder="hotel, crane, rain..." />
+    </label>
+    <div class="hits" id="sitHits"></div>
+    <select class="sr" id="pose"></select>
+    <select class="sr" id="situation"></select>
+
+    <h2>Clothes <span class="lock"><input type="checkbox" id="lockClothes" /> lock</span></h2>
+    <div class="row3">
+      <label>Garment <select id="clothes"></select></label>
+      <label>Fail <select id="fail"></select></label>
+      <label>Cover <select id="cover"></select></label>
+    </div>
+
+    <h2>Camera <span class="lock"><input type="checkbox" id="lockCam" /> lock</span></h2>
+    <div class="row3">
+      <label>Framing <select id="camera"></select></label>
+      <label>Light <select id="light"></select></label>
+      <label>Finish <select id="finish"></select></label>
+    </div>
+    <label class="inline" style="margin-top:12px"><input type="checkbox" id="noPhoto" /> style shield when hot</label>
+
+    <h2>Extra</h2>
+    <textarea id="custom" placeholder="One extra sentence."></textarea>
+  </aside>
 
   <script src="lib-a.js"></script>
   <script src="lib-b.js"></script>
