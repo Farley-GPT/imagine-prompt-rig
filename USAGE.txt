@@ -1,0 +1,11 @@
+Open locally:
+  cd imagine-prompt-rig
+  python3 -m http.server 8080
+  http://localhost:8080
+
+Repo: https://github.com/Farley-GPT/imagine-prompt-rig
+Enable Pages: Settings → Pages → Deploy from main / root
+
+Edit data/library.json to add poses, situations, bodies, skins.
+Age selector is 18-99 or Unknown.
+Fictional adults only.
