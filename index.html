@@ -6,32 +6,17 @@
   <title>Imagine Prompt Rig</title>
   <style>
     :root {
-      --bg: #0f1012;
-      --panel: #17181c;
-      --panel-2: #1e2026;
-      --line: #2a2d35;
-      --text: #ece7df;
-      --muted: #9a9388;
-      --accent: #c45c4a;
-      --accent-2: #e8c9a8;
-      --ok: #7aa87a;
-      --warn: #d4a017;
-      --hot: #c45c4a;
+      --bg: #0f1012; --panel: #17181c; --panel-2: #1e2026; --line: #2a2d35;
+      --text: #ece7df; --muted: #9a9388; --accent: #c45c4a; --accent-2: #e8c9a8;
+      --ok: #7aa87a; --warn: #d4a017; --hot: #c45c4a;
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.4 "IBM Plex Sans", "Segoe UI", sans-serif; }
-    header {
-      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-      padding: 14px 18px; border-bottom: 1px solid var(--line); background: #121317;
-      position: sticky; top: 0; z-index: 5;
-    }
+    header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 18px; border-bottom: 1px solid var(--line); background: #121317; position: sticky; top: 0; z-index: 5; }
     header h1 { font-size: 15px; font-weight: 600; letter-spacing: .04em; margin: 0; text-transform: uppercase; color: var(--accent-2); }
     header .sub { color: var(--muted); font-size: 12px; }
     .grow { flex: 1; }
-    button, select, input[type="text"] {
-      background: var(--panel-2); color: var(--text); border: 1px solid var(--line);
-      border-radius: 6px; padding: 7px 10px; font: inherit;
-    }
+    button, select, input[type="text"] { background: var(--panel-2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; font: inherit; }
     button { cursor: pointer; }
     button.primary { background: var(--accent); border-color: #a34838; color: #fff; }
     button:hover { filter: brightness(1.08); }
@@ -39,26 +24,15 @@
     @media (max-width: 980px) { .layout { grid-template-columns: 1fr; } }
     .controls { padding: 16px 18px 40px; display: grid; gap: 14px; }
     .out { padding: 16px 18px; border-left: 1px solid var(--line); background: #121317; }
-    section.card {
-      background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
-    }
-    section.card h2 {
-      margin: 0 0 10px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
-      display: flex; justify-content: space-between; align-items: center;
-    }
+    section.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+    section.card h2 { margin: 0 0 10px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
     label { display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: var(--muted); }
     label.inline { flex-direction: row; align-items: center; gap: 8px; font-size: 12px; color: var(--text); }
-    .lock {
-      display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--muted); font-weight: 400;
-      letter-spacing: 0; text-transform: none;
-    }
+    .lock { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--muted); font-weight: 400; letter-spacing: 0; text-transform: none; }
     textarea#custom { width: 100%; min-height: 52px; resize: vertical; background: var(--panel-2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 8px; font: inherit; }
-    .prompt {
-      white-space: pre-wrap; background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
-      padding: 14px; min-height: 140px; font-size: 14px; line-height: 1.55;
-    }
+    .prompt { white-space: pre-wrap; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; min-height: 140px; font-size: 14px; line-height: 1.55; }
     .meter { height: 8px; border-radius: 99px; background: #2a2d35; overflow: hidden; margin: 8px 0 14px; }
     .meter > i { display: block; height: 100%; width: 30%; background: var(--ok); }
     .meter.mid > i { width: 62%; background: var(--warn); }
@@ -68,7 +42,6 @@
     .hist { display: flex; flex-direction: column; gap: 6px; max-height: 220px; overflow: auto; }
     .hist button { text-align: left; font-size: 12px; color: var(--muted); }
     footer { color: var(--muted); font-size: 11px; margin-top: 18px; }
-    a { color: var(--accent-2); }
   </style>
 </head>
 <body>
@@ -78,9 +51,7 @@
       <div class="sub">Fictional adults 18+ · lock a look · roll a scene · copy Desired or Safer</div>
     </div>
     <div class="grow"></div>
-    <label class="inline">Pack
-      <select id="pack"></select>
-    </label>
+    <label class="inline">Pack <select id="pack"></select></label>
     <label class="inline">Risk cap
       <select id="riskCap">
         <option value="low">Low</option>
@@ -107,13 +78,11 @@
           <label>Hair <select id="hair"></select></label>
           <label>Eyes <select id="eyes"></select></label>
         </div>
-        <label style="margin-top:8px">Nickname (optional)
-          <input type="text" id="nick" placeholder="Franny" />
-        </label>
-        <label class="inline" style="margin-top:6px"><input type="checkbox" id="useNick" /> include nickname in prompt</label>
+        <label style="margin-top:8px">Nickname <input type="text" id="nick" placeholder="Franny" /></label>
+        <label class="inline" style="margin-top:6px"><input type="checkbox" id="useNick" /> include nickname</label>
       </section>
       <section class="card">
-        <h2>Scene <span class="lock"><input type="checkbox" id="lockScene" /> lock scene</span></h2>
+        <h2>Scene <span class="lock"><input type="checkbox" id="lockScene" /> lock</span></h2>
         <div class="row">
           <label>Style <select id="style"></select></label>
           <label>Situation <select id="situation"></select></label>
@@ -158,10 +127,11 @@
       <div class="prompt" id="safer"></div>
       <h2 style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:16px">History</h2>
       <div class="hist" id="hist"></div>
-      <footer>Fictional adults 18+ only. Library loads from lib.js.</footer>
+      <footer>Fictional adults 18+ only.</footer>
     </div>
   </div>
-  <script src="lib.js"></script>
+  <script src="lib-a.js"></script>
+  <script src="lib-b.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
